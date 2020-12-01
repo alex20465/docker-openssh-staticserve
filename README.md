@@ -1,24 +1,22 @@
-# docker-openssh-staticserve
+# Docker Staticserve
 
+Minimalistic static serve docker compose file with the goal to deploy through CI.
 
-Docker service to serve and deploy static assets such as HTML files.
+> Warning: The CI staticserve-deploy process ignores the .known-hosts fingerprints, don't use it for extreme sensitive data.
 
-## Server installation
-
+## Setup
 
 ```
 $ docker-compose up -d
 ```
 
-
-## Setup server
+## Configuration
 
 Under `config/openssh` the openssh-server has generated the ssh-server configurations, to access to the openssh server add your public-key under `config/openssh/.ssh/authorized_keys`.
 
-
 NGINX serves all the `pages/`.
 
-## Setup deployment
+## Deployment
 
 
 Use the IMAGE `staticserve-deploy` image (`alex20465/staticserve-deploy`) which provides preconfigured SCP and private-key setup via Environment Variables.

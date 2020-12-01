@@ -1,13 +1,15 @@
-# staticserve deployment image
+# Staticserve deploy
 
-Example: 
+Responsible to deploy / upload the static assets (`public/` .. `SOURCE_DIR`) to an SSH remote server.
 
-## Gitlab-ci.yml
+> Warning: The process ignores the .known-hosts fingerprints, don't use it for extreme sensitive data.
+
+
+
+## gitlab-ci.yml example
 
 
 ```yml
-
-
 deploy:
   stage: deploy
   image: alex20465/staticserve-deploy:1.0
@@ -23,7 +25,7 @@ deploy:
     REMOTE_DIR: /pages/example
     SOURCE_DIR: <!ABSOLUTE PATH TO PUBLIC-DIR>
   script:
-    - echo "pass the validation, staticserve-deploy takes over."
+    - echo "no scripts required..."
   environment:
     name: example-page-master
     url: https://<hostname>/example
@@ -32,3 +34,5 @@ deploy:
     - master
 
 ```
+
+> Encode private-key `cat ~/.ssh/id_rsa | base64 --wrap 0`
