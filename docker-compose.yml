@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  openssh:
+    image: alex20465/staticserve-openssh-server:1.0
+    hostname: staticpages
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - USER_NAME=staticserve
+    volumes:
+      - "./config/openssh:/config"
+      - "./pages:/pages"
+    ports:
+      - 2222:2222
+    restart: always
+  staticserve:
+    image: nginx:alpine
+    container_name: staticserve
+    volumes:
+      - "./pages:/usr/share/nginx/html/pages"
+      - "./config/nginx:/etc/nginx/conf.d:ro"
+    restart: always
